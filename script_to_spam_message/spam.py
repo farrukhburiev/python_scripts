@@ -1,9 +1,14 @@
 import asyncio
+import os
+from dotenv import load_dotenv
 from telethon import TelegramClient, events, errors
 
+# Load environment variables from .env file
+load_dotenv()
+
 # --- CONFIGURATION ---
-API_ID = 28508558
-API_HASH = '8638b6ac44d3c90ad8d9859d9d5e3c2e'
+API_ID = int(os.getenv('TELEGRAM_API_ID', '28508558'))
+API_HASH = os.getenv('TELEGRAM_API_HASH', '8638b6ac44d3c90ad8d9859d9d5e3c2e')
 
 # The account receiving the dots and sending "go"
 TARGET_USER = '@D0STONboy' 
