@@ -13,7 +13,7 @@ API_HASH = os.getenv('TELEGRAM_API_HASH', '8638b6ac44d3c90ad8d9859d9d5e3c2e')
 # The account receiving the dots and sending "go"
 TARGET_USER = '@D0STONboy' 
 
-MAX_DOTS = 20
+MAX_DOTS = 99
 SLEEP_TIME = 5 
 # ---------------------
 
