@@ -64,10 +64,17 @@ async def main():
             spam_script = os.path.join(script_dir, 'spam.py')
             
             # Get the correct Python executable from the virtual environment
-            python_exe = os.path.join(os.path.dirname(script_dir), '.venv', 'Scripts', 'python.exe')
+            venv_path = os.path.join(os.path.dirname(script_dir), '.venv')
+            python_exe = os.path.join(venv_path, 'Scripts', 'python.exe')
+            
             if not os.path.exists(python_exe):
                 # Fallback to just 'python' if venv not found
                 python_exe = 'python'
+            
+            # Create environment with venv path
+            env = os.environ.copy()
+            env['VIRTUAL_ENV'] = venv_path
+            env['PATH'] = os.path.join(venv_path, 'Scripts') + os.pathsep + env.get('PATH', '')
             
             try:
                 # Run spam.py in the background with output visible
@@ -76,7 +83,8 @@ async def main():
                     cwd=script_dir,
                     stdout=subprocess.PIPE,
                     stderr=subprocess.STDOUT,
-                    universal_newlines=True
+                    universal_newlines=True,
+                    env=env
                 )
                 print(f"[✓] Spam script started! (PID: {process.pid})\n")
                 
