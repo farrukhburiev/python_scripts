@@ -83,12 +83,24 @@ python dota_trigger.py
 
 ## Cloud Deployment
 
-For 24/7 uptime without keeping your PC on, deploy to DigitalOcean:
+For 24/7 uptime without keeping your PC on:
 
-- **DigitalOcean App Platform** (Easiest): $5/month
-- **DigitalOcean Droplet** (More control): $6/month
+### ✅ **Railway.app (Recommended - FREE)**
+- **Always-on 24/7**: Yes
+- **Cost**: Free ($5/month credits, bot uses ~$0.50)
+- **Setup time**: 5 minutes
+- **Easiest**: Yes
 
-See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed step-by-step instructions.
+👉 [Railway.app Setup Guide](../RAILWAY_DEPLOYMENT.md)
+
+### Alternative Options:
+- **GitHub Actions**: Free but has 6-hour timeout per run
+- **DigitalOcean**: Cheap ($5-6/month) but not free
+
+See detailed guides:
+- [Railway.app Deployment](../RAILWAY_DEPLOYMENT.md) ← **START HERE**
+- [GitHub Actions Deployment](../GITHUB_ACTIONS_DEPLOYMENT.md)
+- [DigitalOcean Deployment](DEPLOYMENT.md)
 
 ### 2. Script to Remove Users
 Telegram bot for managing group members.

@@ -1,0 +1,40 @@
+name: Telegram DOTA Trigger Bot
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 * * * *'  # Run every hour
+  workflow_dispatch:     # Allow manual trigger from GitHub UI
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360  # 6 hours max (GitHub Actions limit)
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        cd script_to_spam_message
+        pip install -r requirements.txt
+    
+    - name: Create .env file
+      run: |
+        cd script_to_spam_message
+        cat > .env << EOF
+        TELEGRAM_API_ID=${{ secrets.TELEGRAM_API_ID }}
+        TELEGRAM_API_HASH=${{ secrets.TELEGRAM_API_HASH }}
+        EOF
+    
+    - name: Run DOTA Trigger Bot
+      run: |
+        cd script_to_spam_message
+        python dota_trigger.py
+      timeout-minutes: 360
