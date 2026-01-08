@@ -10,11 +10,38 @@ load_dotenv()
 API_ID = int(os.getenv('TELEGRAM_API_ID', '28508558'))
 API_HASH = os.getenv('TELEGRAM_API_HASH', '8638b6ac44d3c90ad8d9859d9d5e3c2e')
 
-# The account receiving the dots and sending "go"
-TARGET_USER = '@D0STONboy' 
+# Load config from config.txt
+def load_config():
+    config = {}
+    # Get the directory where this script is located
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    config_path = os.path.join(script_dir, 'config.txt')
+    try:
+        with open(config_path, 'r') as f:
+            for line in f:
+                line = line.strip()
+                # Skip empty lines and comments
+                if not line or line.startswith('#'):
+                    continue
+                if '=' in line:
+                    key, value = line.split('=', 1)
+                    config[key.strip()] = value.strip()
+    except FileNotFoundError:
+        print("⚠️ config.txt not found. Using defaults.")
+    return config
 
-MAX_DOTS = 99
-SLEEP_TIME = 5 
+config = load_config()
+
+# The account receiving the dots and sending "go"
+TARGET_USER = config.get('TARGET_USER', '@D0STONboy')
+MAX_DOTS = int(config.get('MAX_DOTS', '99'))
+MESSAGE_SYMBOL = config.get('MESSAGE_SYMBOL', '.')
+SLEEP_TIME = int(config.get('SLEEP_TIME', '5'))
+
+print(f"[Config] TARGET_USER: {TARGET_USER}")
+print(f"[Config] MAX_DOTS: {MAX_DOTS}")
+print(f"[Config] MESSAGE_SYMBOL: {MESSAGE_SYMBOL}")
+print(f"[Config] SLEEP_TIME: {SLEEP_TIME}s")
 # ---------------------
 
 keep_running = True
@@ -60,7 +87,7 @@ async def main():
         count = 1
         while keep_running:
             try:
-                message_text = "?" * count
+                message_text = MESSAGE_SYMBOL * count   
                 
                 # Send to the specific target
                 await client.send_message(target_entity, message_text)

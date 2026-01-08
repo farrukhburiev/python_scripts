@@ -1,0 +1,12 @@
+# Spam Bot Configuration
+# Edit these values to customize the bot behavior
+
+# TARGET_USER can be:
+#   - Username: @username
+#   - User ID: 123456789
+#   - Group ID: -123456789
+#   - Channel ID: -100123456789
+TARGET_USER=@D0STONboy
+MAX_DOTS=70
+MESSAGE_SYMBOL=?
+SLEEP_TIME=5
