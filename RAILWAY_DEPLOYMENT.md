@@ -30,7 +30,7 @@ Railway.app is the **best free solution** for 24/7 Telegram bots. You get $5/mon
 ### Step 4: Configure Start Command
 1. Click **"Settings"**
 2. Find **"Start Command"**
-3. Enter: `cd script_to_spam_message && python dota_trigger.py`
+3. Enter: `python dota_trigger.py`
 4. Click **"Save"**
 
 ### Step 5: Deploy
