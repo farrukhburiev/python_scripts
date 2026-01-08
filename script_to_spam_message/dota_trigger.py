@@ -63,15 +63,34 @@ async def main():
             script_dir = os.path.dirname(os.path.abspath(__file__))
             spam_script = os.path.join(script_dir, 'spam.py')
             
+            # Get the correct Python executable from the virtual environment
+            python_exe = os.path.join(os.path.dirname(script_dir), '.venv', 'Scripts', 'python.exe')
+            if not os.path.exists(python_exe):
+                # Fallback to just 'python' if venv not found
+                python_exe = 'python'
+            
             try:
-                # Run spam.py in the background
-                subprocess.Popen(
-                    ['python', spam_script],
+                # Run spam.py in the background with output visible
+                process = subprocess.Popen(
+                    [python_exe, spam_script],
                     cwd=script_dir,
                     stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE
+                    stderr=subprocess.STDOUT,
+                    universal_newlines=True
                 )
-                print("[✓] Spam script started!\n")
+                print(f"[✓] Spam script started! (PID: {process.pid})\n")
+                
+                # Check if process is still running after a short delay
+                import time
+                time.sleep(1)
+                if process.poll() is not None:
+                    # Process already exited, read the output
+                    output = process.stdout.read() if process.stdout else ""
+                    print(f"[!] Warning: Spam script exited quickly!")
+                    if output:
+                        print(f"[Output] {output}\n")
+                else:
+                    print(f"[✓] Spam script is running in background\n")
             except Exception as e:
                 print(f"[✗] Error starting spam script: {e}\n")
     
