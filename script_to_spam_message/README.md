@@ -52,6 +52,34 @@ TELEGRAM_API_ID=your_api_id
 TELEGRAM_API_HASH=your_api_hash
 ```
 
+---
+
+### DOTA Trigger Bot (Auto-trigger with "dota" keyword)
+Watches your own messages and automatically triggers the spam script when you type "dota".
+
+**Features:**
+- Listens to your own outgoing messages 24/7
+- Automatically triggers spam script when "dota" is detected
+- Uses the same `config.txt` configuration
+- No manual trigger needed - fully automated
+
+**Setup & Run:**
+```bash
+cd script_to_spam_message
+python dota_trigger.py
+```
+
+**How it works:**
+1. Bot watches all your outgoing messages
+2. When you type "dota" (as a standalone word or exact message), it automatically starts the spam script
+3. The spam script uses the target user from `config.txt`
+4. Both scripts run simultaneously (trigger watches, spam sends)
+
+**Keep it running 24/7:**
+- On Windows: Use Task Scheduler to run `dota_trigger.py` at startup
+- On Linux/Mac: Use `nohup python dota_trigger.py &` or add to crontab
+- Or use a process manager like PM2 or screen
+
 ### 2. Script to Remove Users
 Telegram bot for managing group members.
 

@@ -6,7 +6,11 @@
 #   - User ID: 123456789
 #   - Group ID: -123456789
 #   - Channel ID: -100123456789
+
 TARGET_USER=@D0STONboy
 MAX_DOTS=70
 MESSAGE_SYMBOL=?
 SLEEP_TIME=5
+
+# Trigger word for dota_trigger.py (case-insensitive)
+TRIGGER_WORD=dota
