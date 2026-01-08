@@ -42,7 +42,12 @@ async def main():
     # Using the same session for consistency
     client = TelegramClient('dota_trigger_session', API_ID, API_HASH)
     
-    await client.start(phone='+998906446151')
+    # Start without phone number - reuse existing session
+    await client.connect()
+    
+    # Check if we're authorized, if not attempt to start
+    if not await client.is_user_authorized():
+        await client.start(phone='+998906446151')
     
     # --- DEBUG INFO ---
     me = await client.get_me()
