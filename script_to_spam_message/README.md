@@ -79,6 +79,16 @@ python dota_trigger.py
 - On Windows: Use Task Scheduler to run `dota_trigger.py` at startup
 - On Linux/Mac: Use `nohup python dota_trigger.py &` or add to crontab
 - Or use a process manager like PM2 or screen
+- **Recommended:** Deploy to DigitalOcean for 24/7 uptime (see [DEPLOYMENT.md](DEPLOYMENT.md))
+
+## Cloud Deployment
+
+For 24/7 uptime without keeping your PC on, deploy to DigitalOcean:
+
+- **DigitalOcean App Platform** (Easiest): $5/month
+- **DigitalOcean Droplet** (More control): $6/month
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed step-by-step instructions.
 
 ### 2. Script to Remove Users
 Telegram bot for managing group members.
